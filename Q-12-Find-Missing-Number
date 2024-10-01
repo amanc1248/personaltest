@@ -1,0 +1,26 @@
+// https://leetcode.com/problems/missing-number/
+const findMissingNumber = (nums)=>{
+    // first of all sort the nums using cyclic sort.
+    let i = 0; 
+    while(i<nums.length){
+        const correct = nums[i];
+        if(nums[i]<nums.length && nums[i]!==i){
+            // swap
+            const temp  = nums[i];
+            nums[i] = nums[correct];
+            nums[correct] = temp;
+        }else{
+            i++;
+        }
+        
+    }
+    // now find the missing number
+    for(let j = 0; j<nums.length; j++){
+        if(j!==nums[j]){
+            return j;
+        }
+    };
+    return nums.length;
+}
+// console.log(findMissingNumber([0,4,3,1,]));
+console.log(findMissingNumber([4,3,2,7,8,2,3,1]))
